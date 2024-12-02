@@ -1,13 +1,12 @@
 from collections import Counter, defaultdict
+import sys
 
 
 def main():
     left = []
     right = []
 
-    fname = input()
-    f = open(fname)
-    for line in f.readlines():
+    for line in sys.stdin.readlines():
         l, r = map(int, line.split())
         left.append(l)
         right.append(r)
@@ -15,10 +14,7 @@ def main():
     right.sort()
 
     # part 1
-    total = 0
-    for a, b in zip(left, right):
-        total += abs(a - b)
-    print(total)
+    print(sum(map(lambda p: abs(p[0] - p[1]), zip(left, right))))
 
     # part 2
     right = defaultdict(int, Counter(right))
